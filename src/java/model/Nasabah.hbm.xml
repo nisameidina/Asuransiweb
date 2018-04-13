@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 13, 2018 1:39:20 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Nasabah" table="NASABAH" schema="HR" optimistic-lock="version">
+        <id name="noPolis" type="long">
+            <column name="NO_POLIS" precision="16" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="admin" class="model.Admin" fetch="select">
+            <column name="ID_ADMIN" length="5" />
+        </many-to-one>
+        <property name="ktp" type="string">
+            <column name="KTP" length="16" unique="true" />
+        </property>
+        <property name="nmNasabah" type="string">
+            <column name="NM_NASABAH" length="30" />
+        </property>
+        <property name="tglLahir" type="date">
+            <column name="TGL_LAHIR" length="7" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="10" />
+        </property>
+        <property name="pekerjaan" type="string">
+            <column name="PEKERJAAN" length="20" />
+        </property>
+        <property name="penghasilan" type="string">
+            <column name="PENGHASILAN" length="20" />
+        </property>
+        <property name="alamat" type="string">
+            <column name="ALAMAT" length="30" />
+        </property>
+        <set name="pembayarans" table="PEMBAYARAN" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NO_POLIS" precision="16" scale="0" />
+            </key>
+            <one-to-many class="model.Pembayaran" />
+        </set>
+    </class>
+</hibernate-mapping>

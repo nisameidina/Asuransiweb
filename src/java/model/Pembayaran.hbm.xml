@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 13, 2018 1:39:20 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Pembayaran" table="PEMBAYARAN" schema="HR" optimistic-lock="version">
+        <id name="noPembayaran" type="string">
+            <column name="NO_PEMBAYARAN" length="5" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="nasabah" class="model.Nasabah" fetch="select">
+            <column name="NO_POLIS" precision="16" scale="0" />
+        </many-to-one>
+        <many-to-one name="asuransi" class="model.Asuransi" fetch="select">
+            <column name="ID_ASURANSI" length="8" />
+        </many-to-one>
+        <property name="tglPembayaran" type="date">
+            <column name="TGL_PEMBAYARAN" length="7" />
+        </property>
+        <property name="jumlahBayar" type="string">
+            <column name="JUMLAH_BAYAR" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>
